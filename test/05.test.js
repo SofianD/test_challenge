@@ -3,10 +3,20 @@ const { test, expect } = require('@jest/globals');
 const Server = require("../05")
 
 describe('Server', () => {
+    const server = new Server()
     test(
-        'emit ',
+        'callMeMaybe() throw an error before the event "ready"',
+        () => {
+            expect(() => {
+                return server.callMeMaybe()
+            })
+            .toThrow('Server must be ready!')
+        }
+    )
+
+    test(
+        'isReady returns true after event "ready"',
         done => {
-            const server = new Server()
             server.on('ready', () => {
                 setTimeout(
                     function() {
@@ -19,7 +29,15 @@ describe('Server', () => {
                     }
                 )
             })
-            
+        }
+    )
+
+    test(
+        'callMeMaybe() works mdr',
+        () => {
+            process.stdout.write = jest.fn()
+            server.callMeMaybe()
+            expect(process.stdout.write.mock.calls.length).toBe(1)
         }
     )
 })
