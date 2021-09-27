@@ -11,7 +11,7 @@ describe('GetFilesExtensions', () => {
             await writeFile(dirName + 'fakeFile.js', '')
             await writeFile(dirName + 'fakeFile.html', '')
             await mkdir(dirName + 'sub_dir')
-            await writeFile(dirName + 'fakeFile.md', '')
+            await writeFile(dirName + 'sub_dir/fakeFile.md', '')
         } catch (error) {
             console.log(error)
         }
@@ -33,7 +33,7 @@ describe('GetFilesExtensions', () => {
     )
 
     test(
-        'works only with dir path',
+        'works only with a dir path',
         async () => {
             // expect(await getFilesExtensions(dirName)).toEqual(new Set(['.md', '.js', '.html']))
             expect(async () => {
