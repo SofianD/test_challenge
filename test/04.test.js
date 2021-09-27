@@ -23,13 +23,15 @@ describe('Calc methods', () => {
     )
 })
 
+
+// Pas convaincu
 describe('actionName argument of calc', () => {
-    test(
-        'must be a string',
-        () => {
-            expect(()=>{return calc(1, 1, 2)}).toThrow(`Unknown action '1'`)
-        }
-    )
+    // test(
+    //     'must be a string',
+    //     () => {
+    //         expect(()=>{return calc(1, 1, 2)}).toThrow(`Unknown action '1'`)
+    //     }
+    // )
     test(
         'cannot be null',
         () => {
@@ -37,14 +39,3 @@ describe('actionName argument of calc', () => {
         }
     )
 })
-
-// Pas sûr que ça soit nécessaire:
-// describe('args argument of calc', () => {
-//     test(
-//         'must be a string',
-//         () => {
-//             console.log(calc('add', 1, 2, 3))
-//             expect(calc('add', 1, 2)).toBe(3)
-//         }
-//     )
-// })

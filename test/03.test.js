@@ -6,7 +6,7 @@ describe('User', () => {
     test(
         'is sealed',
         () => {
-            expect(User.addProperty()).toBe(false);
+            expect(Object.isSealed(User)).toBe(true);
         }
     )
 
