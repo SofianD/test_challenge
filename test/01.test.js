@@ -1,9 +1,6 @@
 const { test, expect } = require('@jest/globals');
 const PCKG = require('../01');
 
-// test('add 1 + 5 to equal 6', () => {
-// });
-
 describe('Add', () => {
     test(
         'works',
@@ -23,12 +20,10 @@ describe('Add', () => {
 
 describe('Calc_moy', () => {
     test('calc_moy works', () => {
-        const numbersArray = [ 1, 2, 3];
-        expect(PCKG.calc_moy(numbersArray)).toBe(2);
+        expect(PCKG.calc_moy([ 1, 2, 3])).toBe(2);
     });
 
     test('calc_moy working with array only', () => {
-        const numbersArray = [ 1, 2, 3];
         expect(() => PCKG.calc_moy({arr: [ 1, 2, 3]})).toThrowError("nums must be an array!");
     });
 });
@@ -37,7 +32,7 @@ describe('STATE object', () => {
     test(
         'is frozen',
         () => {
-            expect(Object.isFrozen(PCKG.STATE)).toBe(true)
+            expect(Object.isFrozen(PCKG.STATE)).toBe(true);
         }
     )
 })

@@ -13,12 +13,4 @@ describe('Foo', () => {
             })
         }
     )
-
-    // test(
-    //     'works with string',
-    //     () => {
-    //         const gen = foo()
-    //         expect(gen.next().value).toEqual('1foo');
-    //     }
-    // )
 })

@@ -33,9 +33,8 @@ describe('GetFilesExtensions', () => {
     )
 
     test(
-        'works only with a dir path',
+        'works only with a dir',
         async () => {
-            // expect(await getFilesExtensions(dirName)).toEqual(new Set(['.md', '.js', '.html']))
             expect(async () => {
                 await getFilesExtensions(dirName + 'fakeFile.js')
             }).rejects.toThrow("dir must be a directory!")
