@@ -1,52 +1,49 @@
-const { test, expect } = require('@jest/globals');
-
 const Vector = require('../02');
-const vector = new Vector(1, 2, 3);
 
 describe('Vector class', () => {
-    test('is instantiated', () => {
+    it('is instantiated', () => {
+        const vector = new Vector(1, 2, 3);
         expect(vector).toBeInstanceOf(Vector);
     });
 
-    test('throw an error', () => {
-        expect(() => {return new Vector('a', 2, 3)}).toThrow('x must be a number');
-        expect(() => {return new Vector(1, 'a', 3)}).toThrow('y must be a number');
-        expect(() => {return new Vector(1, 2, 'a')}).toThrow('z must be a number');
+    it('should be equal to new Vector(0, 0, 0) when there is no argument', () => {
+        const vector = new Vector();
+        const vector2 = new Vector(0, 0, 0);
+        expect(vector).toBeInstanceOf(Vector);
+        expect(vector).toEqual(vector2);
+    });
+
+    it('should throw if one argument or more are not a Number', () => {
+        expect(() => new Vector('a', 2, 3)).toThrow('x must be a number');
+        expect(() => new Vector(1, 'a', 3)).toThrow('y must be a number');
+        expect(() => new Vector(1, 2, 'a')).toThrow('z must be a number');
     });
 });
 
 describe('Vector.add method', () => {
-    test(
-        'works',
-        () => {
-            const vector2 =  new Vector(1, 2, 3);
-            const res = {
-                "x": vector.x + vector2.x,
-                "y": vector.y + vector2.y,
-                "z": vector.z + vector2.z
-            }
-            vector.add(vector2);
-            expect(vector).toEqual(res);
+    it('should return {"x": 2, "y": 4, "z": 6} when vector(1, 2, 3) is added in vector(1, 2, 3)', () => {
+        const vector = new Vector(1, 2, 3);
+        const vector2 =  new Vector(1, 2, 3);
+        const res = {
+            "x": vector.x + vector2.x,
+            "y": vector.y + vector2.y,
+            "z": vector.z + vector2.z
         }
-    )
+        vector.add(vector2);
+        expect(vector).toEqual(res);
+    })
 
-    test(
-        'only accepts Vector instances',
-        () => {
+    it('should only accept Vector instances', () => {
+            const vector = new Vector(1, 2, 3);
             const notVector = {"x": 1, "y": 2, "z": 3};
-            expect(() => {
-                return vector.add(notVector)
-            })
-            .toThrow('vec must be an instanceof Vector');
+            expect(() => vector.add(notVector)).toThrow('vec must be an instanceof Vector');
         }
     )
 })
 
 describe('Vector.toJSON', () => {
-    test(
-        'works',
-        () => {
-            expect((new Vector()).toJSON()).toEqual({"x": 0, "y": 0, "z": 0});
-        }
-    )
+    it('should return {"x": 1, "y": 2, "z": 3} for a vector(1, 2, 3)', () => {
+        const vector = new Vector(1, 2, 3);
+        expect(vector.toJSON()).toEqual({"x": 1, "y": 2, "z": 3});
+    })
 })

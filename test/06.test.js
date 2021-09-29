@@ -1,34 +1,20 @@
-const { test, expect } = require('@jest/globals');
 const prox = require('../06')
+
 describe('Proxy', () => {
-    test(
-        'called with good param returns value',
-        () => {
-            expect(prox.foo).toBe(10**2)
-        }
-    )
+    test('should return 100 if the param is "foo"', () => {
+        expect(prox.foo).toBe(10**2)
+    })
 
-    test(
-        'called with bad param throw an error',
-        () => {
-            expect(() => {return prox.bar}).toThrow('Unknown property bar in target object!')
-        }
-    )
+    it('should throw if the param is unknown', () => {
+        expect(() => prox.bar).toThrow('Unknown property bar in target object!')
+    })
     
-    test(
-        'set param with good aruments',
-        () => {
-            prox.bar = 5
-            expect(prox.bar).toBe(5**2)
-        }
-    )
+    it('should set bar param with 5 and return 25 when bar param is called', () => {
+        prox.bar = 5;
+        expect(prox.bar).toBe(5**2);
+    })
 
-    test(
-        'set param with bad aruments',
-        () => {
-            expect(() => {
-                return prox.bar = 'foo'
-            }).toThrow("value must be a number")
-        }
-    )
+    it('should throw when setting "bar" param without Number as value', () => {
+        expect(() => prox.bar = 'foo').toThrow("value must be a number")
+    })
 })

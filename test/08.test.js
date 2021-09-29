@@ -1,43 +1,24 @@
-const { test, expect, beforeAll, afterAll } = require('@jest/globals');
-const {mkdir, rm, writeFile} = require('fs/promises')
-
+const { join } = require('path');
 const getFilesExtensions = require('../08')
-const dirName = './test/fake_dir/'
+
+const dirName = join(__dirname, 'mock_dir_test_8')
 
 describe('GetFilesExtensions', () => {
-    beforeAll(async () => {
-        try {
-            await mkdir(dirName)
-            await writeFile(dirName + 'fakeFile.js', '')
-            await writeFile(dirName + 'fakeFile.html', '')
-            await mkdir(dirName + 'sub_dir')
-            await writeFile(dirName + 'sub_dir/fakeFile.md', '')
-        } catch (error) {
-            console.log(error)
-        }
-
-    })
-    afterAll(async () => {
-        try {
-            await rm(dirName, {recursive: true})
-        } catch (error) {
-            console.log(error)
-        }
+    it('should return Set{".md", ".js", ".html"}', async () => {
+        const fileExtensions = await getFilesExtensions(dirName);
+        const validExtensions = new Set(['.md', '.js', '.html']);
+        expect(fileExtensions).toEqual(validExtensions);
     })
 
-    test(
-        'works',
-        async () => {
-            expect(await getFilesExtensions(dirName)).toEqual(new Set(['.md', '.js', '.html']))
-        }
-    )
+    it('should throw if the argument is not a dir', async () => {
+        expect(async () => {
+            await getFilesExtensions(__filename)
+        }).rejects.toThrow("dir must be a directory!");
+    })
 
-    test(
-        'works only with a dir',
-        async () => {
-            expect(async () => {
-                await getFilesExtensions(dirName + 'fakeFile.js')
-            }).rejects.toThrow("dir must be a directory!")
-        }
-    )
+    it('should throw if called without argument', async () => {
+        expect(async () => {
+            await getFilesExtensions()
+        }).rejects.toThrow()
+    })
 })
