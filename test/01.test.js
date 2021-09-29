@@ -10,9 +10,7 @@ describe('Add', () => {
     })
 
     it('should throw if arguments[0] is undefined', () => {
-        expect(() => {
-            PCKG.add()
-        }).toThrow("a must be a number");
+        expect(() => PCKG.add()).toThrow("a must be a number");
     })
 
     it('should throw if the arguments are not numbers', () => {
@@ -39,7 +37,7 @@ describe('Calc_moy', () => {
 });
 
 describe('STATE object', () => {
-    it('is frozen',() => {
+    it('is frozen', () => {
             expect(Object.isFrozen(PCKG.STATE)).toBe(true);
     })
 })
