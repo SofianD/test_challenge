@@ -16,5 +16,8 @@ describe('Proxy', () => {
 
     it('should throw when setting "bar" param without Number as value', () => {
         expect(() => prox.bar = 'foo').toThrow("value must be a number");
+        expect(() => prox.bar = []).toThrow("value must be a number");
+        expect(() => prox.bar = {}).toThrow("value must be a number");
+        expect(() => prox.bar = true).toThrow("value must be a number");
     })
 })
