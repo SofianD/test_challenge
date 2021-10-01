@@ -1,7 +1,7 @@
 const foo = require('../07')
 
 describe('Foo', () => {
-    it('should return each value one at a time from ["1bar", NaN, 5n, 0n] when foo() is called with "foo" as argument', () => {
+    it('should return each value one at a time from ["1bar", NaN, 5n, 0n] when foo() is called with "bar" as argument', () => {
         const arr = ['1bar', NaN, 5n, 0n];
         const gen = foo('bar');
         for (const value of arr) expect(gen.next().value).toEqual(value);

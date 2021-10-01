@@ -13,12 +13,10 @@ describe('GetFilesExtensions', () => {
     it('should throw if the argument is not a dir', async () => {
         expect(async () => {
             await getFilesExtensions(__filename)
-        }).rejects.toThrow("dir must be a directory!");
+        }).rejects.toThrow("dir must be a directory!");     //  Ligne22: seems to be uncovered but...
     })
 
     it('should throw if called without argument', async () => {
-        expect(async () => {
-            await getFilesExtensions()
-        }).rejects.toThrow()
+        expect(async () => await getFilesExtensions()).rejects.toThrow()
     })
 })

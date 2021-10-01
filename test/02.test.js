@@ -6,7 +6,7 @@ describe('Vector class', () => {
         expect(vector).toBeInstanceOf(Vector);
     });
 
-    it('should be equal to new Vector(0, 0, 0) when there is no argument', () => {
+    it('should be equal to new Vector(0, 0, 0) when it has no argument', () => {
         const vector = new Vector();
         const vector2 = new Vector(0, 0, 0);
         expect(vector).toBeInstanceOf(Vector);
@@ -21,9 +21,9 @@ describe('Vector class', () => {
 });
 
 describe('Vector.add method', () => {
-    it('should return {"x": 2, "y": 4, "z": 6} when vector(1, 2, 3) is added in vector(1, 2, 3)', () => {
+    it('should return {"x": 5, "y": 7, "z": 9} when vector(4, 5, 6) is added in vector(1, 2, 3)', () => {
         const vector = new Vector(1, 2, 3);
-        const vector2 =  new Vector(1, 2, 3);
+        const vector2 =  new Vector(4, 5, 6);
         const res = {
             "x": vector.x + vector2.x,
             "y": vector.y + vector2.y,

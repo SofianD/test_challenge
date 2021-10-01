@@ -33,8 +33,8 @@ describe('Calc_moy', () => {
         expect(() => PCKG.calc_moy({})).toThrow("nums must be an array!");
         expect(() => PCKG.calc_moy('{}')).toThrow("nums must be an array!");
         expect(() => PCKG.calc_moy(32)).toThrow("nums must be an array!");
-    });
-});
+    })
+})
 
 describe('STATE object', () => {
     it('is frozen', () => {
